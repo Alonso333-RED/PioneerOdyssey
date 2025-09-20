@@ -15,6 +15,7 @@ import cl.alonso.pioneerodyssey.utils.Triple;
 
 public class PioneerOdyssey {
     public static void main(String[] args) {
+        // The proyect is under early development. this is pure testing ground.
         int xSize = ThreadLocalRandom.current().nextInt(1, 10+1);
         int ySize = ThreadLocalRandom.current().nextInt(1, 10+1);
 
