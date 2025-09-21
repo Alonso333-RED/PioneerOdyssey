@@ -64,63 +64,75 @@ public class PioneerOdyssey {
         System.out.println("Oeste: " + mySector.getWest().getName()+" ("+mySector.getWest().getID()+")");
         System.out.println();
 
-        SpaceShip myShip = new SpaceShip(
-            "SS-Enterprise",
-            Tier.Tier5,
-            Category.Category3,
-            100,
-            50,
+        SpaceShip CNS_Chiloe = new SpaceShip(
+            "CNS-Chiloe",
+            14,
+            Tier.Tier2,
+            Category.Category5,
+            1465,
             30,
-            20,
-            new Triple<>(WeaponSlot.class, Category.Category1, 3),
+            4,
+            45,
+            765,
+            450,
+            245,
+            325,
+            100,
+            new Triple<>(WeaponSlot.class, Category.Category1, 6),
+            new Triple<>(WeaponSlot.class, Category.Category1, 6),
             new Triple<>(WeaponSlot.class, Category.Category2, 2),
-            new Triple<>(WeaponSlot.class, Category.Category3, 1)
+            new Triple<>(WeaponSlot.class, Category.Category4, 1)
         );
-
-        System.out.println(myShip.getInfo());
 
         Weapon supportLaser = new Weapon(
-            "Support Laser",
-            Tier.Tier2,
+            "Laser de Advertencia",
+            Tier.Tier1,
             Category.Category1,
-            50,
-            40,
-            20,
-            10,
+            35,
             1,
-            5
-        );
+            10,
 
-        Weapon lightArtillery = new Weapon(
-            "Light Artillery",
-            Tier.Tier3,
-            Category.Category2,
-            80,
-            70,
-            40,
-            30,
-            2,
-            10
-        );
+            10,
+            10,
+            0.1,
 
-        Weapon heavyCannon = new Weapon(
-            "Heavy Cannon",
-            Tier.Tier5,
-            Category.Category3,
-            120,
-            90,
-            60,
             50,
-            4,
-            20
+            25,
+            0.25,
+
+            25,
+            18,
+            0.18,
+
+            0,0,0
         );
 
-        equipUtils.equipWeapon(myShip, supportLaser, 4);
-        equipUtils.equipWeapon(myShip, lightArtillery, 3);
-        equipUtils.equipWeapon(myShip, lightArtillery, 0);
-        equipUtils.equipWeapon(myShip, heavyCannon, 5);
-        System.out.println(myShip.getInfo());
-        System.out.println(heavyCannon);
-        System.out.println(((WeaponSlot) myShip.getSlots().get(5)).getWeapon());
+        Weapon ionColosalBlaster = new Weapon(
+            "Blaster de Iones colosal",
+            Tier.Tier9,
+            Category.Category10,
+            55,
+            5,
+            235,
+            100, 10, 0.01,
+            850, 25, 0.75,
+            450, 18, 0.40,
+            100,10,0.01
+        );
+
+        CNS_Chiloe.setName("TricolorWhale");
+        equipUtils.equipWeapon(CNS_Chiloe, supportLaser, 14);
+        equipUtils.equipWeapon(CNS_Chiloe, ionColosalBlaster, 3);
+        equipUtils.equipWeapon(CNS_Chiloe, ionColosalBlaster, 15);
+
+        System.out.println(CNS_Chiloe.getBaseInfo());
+        System.out.println(CNS_Chiloe.getInfo());
+        System.out.println(supportLaser.getInfo());
+        System.out.println(ionColosalBlaster.getInfo());
+        System.out.println(supportLaser);
+        System.out.println(ionColosalBlaster);
+        System.out.println(((WeaponSlot) CNS_Chiloe.getSlots().get(14)).getWeapon());
+        System.out.println(((WeaponSlot) CNS_Chiloe.getSlots().get(3)).getWeapon());
+
     }
 }
