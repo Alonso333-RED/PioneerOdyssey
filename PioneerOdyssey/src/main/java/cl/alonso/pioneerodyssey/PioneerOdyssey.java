@@ -19,8 +19,8 @@ public class PioneerOdyssey {
         int xSize = ThreadLocalRandom.current().nextInt(1, 10+1);
         int ySize = ThreadLocalRandom.current().nextInt(1, 10+1);
 
-        //xSize = 10;
-        //ySize = 10;
+        xSize = 10;
+        ySize = 10;
 
         Sector[][] world = new Sector[xSize][ySize];
         worldUtils.setupWorld(world);
@@ -66,6 +66,7 @@ public class PioneerOdyssey {
 
         SpaceShip CNS_Chiloe = new SpaceShip(
             "CNS-Chiloe",
+            "Un rudimentario crucero de la epoca pasada",
             14,
             Tier.Tier2,
             Category.Category5,
@@ -74,6 +75,7 @@ public class PioneerOdyssey {
             4,
             45,
             765,
+            100,
             450,
             245,
             325,
@@ -86,34 +88,28 @@ public class PioneerOdyssey {
 
         Weapon supportLaser = new Weapon(
             "Laser de Advertencia",
+            "Arma Simple",
             Tier.Tier1,
             Category.Category1,
             35,
             1,
             10,
 
-            10,
-            10,
-            0.1,
-
-            50,
-            25,
-            0.25,
-
-            25,
-            18,
-            0.18,
-
-            0,0,0
+            10, 10, 0.1,
+            50, 25, 0.25,
+            25, 18, 0.18,
+            0, 0, 0
         );
 
         Weapon ionColosalBlaster = new Weapon(
             "Blaster de Iones colosal",
+            "Arma avanzada",
             Tier.Tier9,
             Category.Category10,
             55,
             5,
             235,
+
             100, 10, 0.01,
             850, 25, 0.75,
             450, 18, 0.40,
@@ -122,8 +118,10 @@ public class PioneerOdyssey {
 
         CNS_Chiloe.setName("TricolorWhale");
         equipUtils.equipWeapon(CNS_Chiloe, supportLaser, 14);
+        equipUtils.equipWeapon(CNS_Chiloe, ionColosalBlaster, 14);
         equipUtils.equipWeapon(CNS_Chiloe, ionColosalBlaster, 3);
         equipUtils.equipWeapon(CNS_Chiloe, ionColosalBlaster, 15);
+        equipUtils.equipWeapon(CNS_Chiloe, supportLaser, 15);
 
         System.out.println(CNS_Chiloe.getBaseInfo());
         System.out.println(CNS_Chiloe.getInfo());

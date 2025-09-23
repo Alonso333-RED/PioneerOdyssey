@@ -5,6 +5,7 @@ import cl.alonso.pioneerodyssey.utils.Category;
 
 public class Weapon {
     private final String name;
+    private final String description;
     private final Tier tier;
     private final Category category;
     private final int accuracy;
@@ -30,6 +31,7 @@ public class Weapon {
 
     public Weapon(
         String name, 
+        String description,
         Tier tier, 
         Category category,
         int accuracy, 
@@ -54,6 +56,9 @@ public class Weapon {
     ) 
     {
         this.name = name;
+        int descriptionLimit = 100;
+        if (description.length() > descriptionLimit) {description = description.substring(0, descriptionLimit);}
+        this.description = description;
         this.tier = tier;
         this.category = category;
         this.accuracy = accuracy;
@@ -84,6 +89,7 @@ public class Weapon {
 
     public Weapon(Weapon other) {
         this.name = other.name;
+        this.description = other.description;
         this.tier = other.tier;
         this.category = other.category;
         this.accuracy = other.accuracy;
@@ -109,6 +115,8 @@ public class Weapon {
     }
 
     public String getName() {return name;}
+
+    public String getDescription() {return description;}
 
     public Tier getTier() {return tier;}
 

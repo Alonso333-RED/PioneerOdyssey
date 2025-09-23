@@ -11,6 +11,7 @@ import cl.alonso.pioneerodyssey.utils.Triple;
 public class SpaceShip {
     private final String className;
     private String name;
+    private final String description;
     
     private final int requiredLevel;
     private final Tier tier;
@@ -34,6 +35,9 @@ public class SpaceShip {
     private final int cargoCapacity;
     private int currentCargo;
 
+    private final int baseMiningPower;
+    private int miningPower;
+
     private final int baseKineticArmor;
     private int kineticArmor;
 
@@ -51,7 +55,8 @@ public class SpaceShip {
 
     @SafeVarargs
     public SpaceShip(
-        String className, 
+        String className,
+        String description,
         int requiredLevel,
         Tier tier, 
         Category category,
@@ -60,16 +65,19 @@ public class SpaceShip {
         int baseAcceleration,
         int baseMaxEnergy,
         int cargoCapacity,
+        int baseMiningPower,
         int baseKineticArmor,
         int baseEnergyArmor,
         int baseThermalArmor,
         int baseExplosiveArmor,
-        //TypeofSlot, MaxCategory, Quantity
-        Triple<Class<?>, Category, Integer>... slotsToAdd
+        Triple<Class<?>, Category, Integer>... slotsToAdd //TypeofSlot, MaxCategory, Quantity
         )
         {
         this.className = className;
         this.name = className;
+        int descriptionLimit = 100;
+        if (description.length() > descriptionLimit) {description = description.substring(0, descriptionLimit);}
+        this.description = description;
         this.requiredLevel = requiredLevel;
         this.tier = tier;
         this.category = category;
@@ -91,6 +99,9 @@ public class SpaceShip {
 
         this.cargoCapacity = cargoCapacity;
         this.currentCargo = 0;
+
+        this.baseMiningPower = baseMiningPower;
+        this.miningPower = baseMiningPower;
 
         this.baseKineticArmor = baseKineticArmor;
         this.kineticArmor = baseKineticArmor;
@@ -127,6 +138,8 @@ public class SpaceShip {
     public String getName() {return name;}
     public void setName(String name) {this.name = name;}
 
+    public String getDescription() {return description;}
+
     public int getRequiredLevel() {return requiredLevel;}
     public Tier getTier() {return tier;}
     public Category getCategory() {return category;}
@@ -161,6 +174,10 @@ public class SpaceShip {
     public int getCurrentCargo() {return currentCargo;}
     public void setCurrentCargo(int currentCargo) {this.currentCargo = currentCargo;}
 
+    public int getBaseMiningPower() {return baseMiningPower;}
+    public int getMiningPower() {return miningPower;}
+    public void serMiningPower(int miningPower) {this.miningPower = miningPower;}
+
     public int getBaseKineticArmor() {return baseKineticArmor;}
     public int getKineticArmor() {return kineticArmor;}
     public void setKineticArmor(int kineticArmor) {this.kineticArmor = kineticArmor;}
@@ -183,6 +200,7 @@ public class SpaceShip {
         StringBuilder info = new StringBuilder();
         info.append("Informacion de nave/ Atributos base:\n")
             .append(" --- ").append(name).append(" --- \n")
+            .append(description).append("\n")
             .append("Clase: ").append(className).append("\n")
             .append("Nivel Requerido: ").append(requiredLevel).append("\n")
             .append("Tier: ").append(tier).append("\n")
@@ -192,6 +210,7 @@ public class SpaceShip {
             .append("Aceleración base: ").append(baseAcceleration).append("\n")
             .append("Energía base: ").append(baseMaxEnergy).append("\n")
             .append("Capacidad de Carga: ").append(cargoCapacity).append("\n")
+            .append("Poder de Mineria base: ").append(baseMiningPower).append("\n")
             .append("Blindaje Cinetico base: ").append(baseKineticArmor).append("\n")
             .append("Blindaje Energetico base: ").append(baseEnergyArmor).append("\n")
             .append("Blindaje Termico base: ").append(baseThermalArmor).append("\n")
@@ -213,6 +232,7 @@ public class SpaceShip {
             .append("Aceleración: ").append(acceleration).append("\n")
             .append("Energía: ").append(currentEnergy).append("/").append(maxEnergy).append("\n")
             .append("Capacidad de Carga: ").append(currentCargo).append("/").append(cargoCapacity).append("\n")
+            .append("Poder de Mineria: ").append(miningPower).append("\n")
             .append("Blindaje Cinetico: ").append(kineticArmor).append("\n")
             .append("Blindaje Energetico: ").append(energyArmor).append("\n")
             .append("Blindaje Termico: ").append(thermalArmor).append("\n")
