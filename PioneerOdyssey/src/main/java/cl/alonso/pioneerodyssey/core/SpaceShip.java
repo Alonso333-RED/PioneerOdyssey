@@ -13,7 +13,7 @@ public class SpaceShip {
     private String name;
     private final String description;
     
-    private final int requiredLevel;
+    //private final int requiredLevel;
     private final Tier tier;
     private final Category category;
 
@@ -57,7 +57,7 @@ public class SpaceShip {
     public SpaceShip(
         String className,
         String description,
-        int requiredLevel,
+        //int requiredLevel,
         Tier tier, 
         Category category,
         int baseMaxIntegrity,
@@ -73,12 +73,22 @@ public class SpaceShip {
         Triple<Class<?>, Category, Integer>... slotsToAdd //TypeofSlot, MaxCategory, Quantity
         )
         {
+        int nameLimit = 25;
+        if (className.length() > nameLimit) {
+            System.out.println("!---ADVERTENCIA: "+className+" Es demasiado largo para el nombre, sera acortado a "+nameLimit+" caracteres.");
+            className = className.substring(0, nameLimit);
+        }
         this.className = className;
         this.name = className;
+        
         int descriptionLimit = 100;
-        if (description.length() > descriptionLimit) {description = description.substring(0, descriptionLimit);}
+        if (description.length() > descriptionLimit) {
+            System.out.println("!---ADVERTENCIA: "+description+" Es demasiado largo para la descripcion, sera acortado a "+descriptionLimit+" caracteres.");
+            description = description.substring(0, descriptionLimit);
+        }
         this.description = description;
-        this.requiredLevel = requiredLevel;
+        
+        //this.requiredLevel = requiredLevel;
         this.tier = tier;
         this.category = category;
 
@@ -140,7 +150,7 @@ public class SpaceShip {
 
     public String getDescription() {return description;}
 
-    public int getRequiredLevel() {return requiredLevel;}
+    //public int getRequiredLevel() {return requiredLevel;}
     public Tier getTier() {return tier;}
     public Category getCategory() {return category;}
 
@@ -202,7 +212,7 @@ public class SpaceShip {
             .append(" --- ").append(name).append(" --- \n")
             .append(description).append("\n")
             .append("Clase: ").append(className).append("\n")
-            .append("Nivel Requerido: ").append(requiredLevel).append("\n")
+            //.append("Nivel Requerido: ").append(requiredLevel).append("\n")
             .append("Tier: ").append(tier).append("\n")
             .append("Categoría: ").append(category).append("\n")
             .append("Integridad base: ").append(baseMaxIntegrity).append("\n")
@@ -224,7 +234,7 @@ public class SpaceShip {
         info.append("Informacion de nave/ Atributos actuales:\n")
             .append(" --- ").append(name).append(" --- \n")
             .append("Clase: ").append(className).append("\n")
-            .append("Nivel Requerido: ").append(requiredLevel).append("\n")
+            //.append("Nivel Requerido: ").append(requiredLevel).append("\n")
             .append("Tier: ").append(tier).append("\n")
             .append("Categoría: ").append(category).append("\n")
             .append("Integridad: ").append(currentIntegrity).append("/").append(maxIntegrity).append("\n")

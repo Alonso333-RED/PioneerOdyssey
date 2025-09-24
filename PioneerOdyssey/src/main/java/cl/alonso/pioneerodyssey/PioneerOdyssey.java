@@ -18,38 +18,68 @@ public class PioneerOdyssey {
         // The proyect is under early development. this is pure testing ground.
         int xSize = ThreadLocalRandom.current().nextInt(1, 10+1);
         int ySize = ThreadLocalRandom.current().nextInt(1, 10+1);
+        int zSize = ThreadLocalRandom.current().nextInt(1, 10+1);
 
-        xSize = 10;
-        ySize = 10;
+        //xSize = 10;
+        //ySize = 10;
+        //zSize = 10;
 
-        Sector[][] world = new Sector[xSize][ySize];
+        Sector[][][] world = new Sector[xSize][ySize][zSize];
         worldUtils.setupWorld(world);
 
-        System.out.println("Tamaño del mundo: "+xSize+","+ySize);
+        System.out.println("Tamaño del mundo: "+xSize+","+ySize+","+zSize);
 
-        int inRow = ThreadLocalRandom.current().nextInt(0, world.length);
-        int inColumn = ThreadLocalRandom.current().nextInt(0, world[0].length);
+        int inX = ThreadLocalRandom.current().nextInt(0, world.length);
+        int inY = ThreadLocalRandom.current().nextInt(0, world[0].length);
+        int inZ = ThreadLocalRandom.current().nextInt(0, world[0][0].length);
 
-        //inRow = 0;
-        //inColumn = 0;
+        //inX = 0;
+        //inY = 0;
+        //inZ = 0;
 
         System.out.println("Mapa del Mundo");
         System.out.println();
 
-        Sector mySector = world[inRow][inColumn];
+        Sector mySector = world[inX][inY][inZ];
 
-        for (Sector[] world1 : world) {
-            for (Sector currentSector : world1) {
+        int z = mySector.getZLocation();
+        //z = 0;
+        System.out.println("Capa "+z);
+        for (int x = 0; x < world.length; x++) {
+            for (int y = 0; y < world[x].length; y++) {
+                Sector currentSector = world[x][y][z];
                 if (currentSector == mySector) {
-                    System.out.print("X" + "  |");
+                    System.out.print("X" + "    |");
                 } else if (currentSector == mySector.getNorth()) {
-                    System.out.print("^" + "  |");
+                    System.out.print("^" + "    |");
                 } else if (currentSector == mySector.getEast()) {
-                    System.out.print(">" + "  |");
+                    System.out.print(">" + "    |");
                 } else if (currentSector == mySector.getWest()) {
-                    System.out.print("<" + "  |");
+                    System.out.print("<" + "    |");
                 } else if (currentSector == mySector.getSouth()) {
-                    System.out.print("v" + "  |");
+                    System.out.print("v" + "    |");
+                } else {
+                    System.out.print(currentSector.getID() + "|");
+                }
+            }
+            System.out.println();
+        }
+        
+        z = ThreadLocalRandom.current().nextInt(0, world[0][0].length);
+        System.out.println("Capa "+z);
+        for (int x = 0; x < world.length; x++) {
+            for (int y = 0; y < world[x].length; y++) {
+                Sector currentSector = world[x][y][z];
+                if (currentSector == mySector) {
+                    System.out.print("X" + "    |");
+                } else if (currentSector == mySector.getNorth()) {
+                    System.out.print("^" + "    |");
+                } else if (currentSector == mySector.getEast()) {
+                    System.out.print(">" + "    |");
+                } else if (currentSector == mySector.getWest()) {
+                    System.out.print("<" + "    |");
+                } else if (currentSector == mySector.getSouth()) {
+                    System.out.print("v" + "    |");
                 } else {
                     System.out.print(currentSector.getID() + "|");
                 }
@@ -57,7 +87,7 @@ public class PioneerOdyssey {
             System.out.println();
         }
         System.out.println();
-        System.out.println("Ubicación actual: " + mySector.getName() + " (" + mySector.getXLocation()+","+mySector.getYLocation()+")");
+        System.out.println("Ubicación actual: " + mySector.getName() + " (" + mySector.getXLocation()+","+mySector.getYLocation()+","+mySector.getZLocation()+")");
         System.out.println("Norte: " + mySector.getNorth().getName()+" ("+mySector.getNorth().getID()+")");
         System.out.println("Sur: " + mySector.getSouth().getName()+" ("+mySector.getSouth().getID()+")");
         System.out.println("Este: " + mySector.getEast().getName()+" ("+mySector.getEast().getID()+")");
@@ -66,8 +96,7 @@ public class PioneerOdyssey {
 
         SpaceShip CNS_Chiloe = new SpaceShip(
             "CNS-Chiloe",
-            "Un rudimentario crucero de la epoca pasada",
-            14,
+            "Un rudimentario crucero de la epoca pasada.",
             Tier.Tier2,
             Category.Category5,
             1465,

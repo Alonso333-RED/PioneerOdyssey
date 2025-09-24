@@ -4,29 +4,29 @@ public class Sector {
     
     private String name;
     
-    private int xLocation;
-    private int yLocation;
+    private final int xLocation;
+    private final int yLocation;
+    private final int zLocation;
     private Sector north;
     private Sector east;
     private Sector west;
     private Sector south;
     
-    public Sector(String name, int xLocation, int yLocation) {
+    public Sector(String name, int xLocation, int yLocation, int zLocation) {
         this.name = name;
         this.xLocation = xLocation;
         this.yLocation = yLocation;
+        this.zLocation = zLocation;
     }
     
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    public String getID() { return xLocation+","+yLocation; }
+    public String getID() { return xLocation+","+yLocation+","+zLocation; }
 
     public int getXLocation() { return xLocation; }
-    public void setXLocation(int xLocation) { this.xLocation = xLocation; }
-
     public int getYLocation() { return yLocation; }
-    public void setYLocation(int yLocation) { this.yLocation = yLocation; }
+    public int getZLocation() { return zLocation; }
 
     public Sector getNorth() { return north; }
     public void setNorth(Sector north) { this.north = north; }

@@ -35,22 +35,26 @@ public class worldUtils {
         return selection;
     }
 
-    public static void setupWorld(Sector[][] world) {
+    public static void setupWorld(Sector[][][] world) {
         int number = 1;
-        for (int row = 0; row < world.length; row++) {
-            for (int col = 0; col < world[row].length; col++) {
-                world[row][col] = new Sector(getRandomName()+" "+number, row, col);
-                number++;
+        for (int x = 0; x < world.length; x++) {
+            for (int y = 0; y < world[x].length; y++) {
+                for (int z = 0; z < world[x][y].length; z++) {
+                    world[x][y][z] = new Sector(getRandomName() + " " + number, x, y, z);
+                    number++;
+                }
             }
         }
 
-        for (int row = 0; row < world.length; row++) {
-            for (int col = 0; col < world[row].length; col++) {
-                Sector current = world[row][col];
-                current.setNorth(world[(row - 1 + world.length) % world.length][col]);
-                current.setSouth(world[(row + 1) % world.length][col]);
-                current.setWest(world[row][(col - 1 + world[row].length) % world[row].length]);
-                current.setEast(world[row][(col + 1) % world[row].length]);
+        for (int x = 0; x < world.length; x++) {
+            for (int y = 0; y < world[x].length; y++) {
+                for (int z = 0; z < world[x][y].length; z++) {
+                    Sector current = world[x][y][z];
+                    current.setNorth(world[(x - 1 + world.length) % world.length][y][z]);
+                    current.setSouth(world[(x + 1) % world.length][y][z]);
+                    current.setWest(world[x][(y - 1 + world[x].length) % world[x].length][z]);
+                    current.setEast(world[x][(y + 1) % world[x].length][z]);
+                }
             }
         }
     }
