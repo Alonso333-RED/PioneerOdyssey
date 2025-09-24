@@ -21,4 +21,14 @@ public enum Tier {
     public int getValue() {
         return value;
     }
+
+    public Tier nextOrMax() {
+        Tier[] vals = values();
+        int ord = this.ordinal();
+        if (ord < vals.length - 1) {
+            return vals[ord + 1];
+        } else {
+            return this;
+        }
+    }
 }

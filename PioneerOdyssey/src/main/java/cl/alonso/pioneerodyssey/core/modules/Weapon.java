@@ -55,10 +55,20 @@ public class Weapon {
         double minExplosiveDamageFactor
     ) 
     {
+        int nameLimit = 25;
+        if (name.length() > nameLimit) {
+            System.out.println("!---ADVERTENCIA: "+name+" Es demasiado largo para el nombre, sera acortado a "+nameLimit+" caracteres.");
+            name = name.substring(0, nameLimit);
+        }
         this.name = name;
+
         int descriptionLimit = 100;
-        if (description.length() > descriptionLimit) {description = description.substring(0, descriptionLimit);}
+        if (description.length() > descriptionLimit) {
+            System.out.println("!---ADVERTENCIA: "+description+" Es demasiado largo para la descripcion, sera acortado a "+descriptionLimit+" caracteres.");
+            description = description.substring(0, descriptionLimit);
+        }
         this.description = description;
+        
         this.tier = tier;
         this.category = category;
         this.accuracy = accuracy;
@@ -151,6 +161,7 @@ public class Weapon {
         StringBuilder info = new StringBuilder();
         info.append("Informacion de Arma/ Atributos :\n")
             .append(" --- ").append(name).append(" --- \n")
+            .append("Descripcion: ").append(description).append("\n")
             .append("Tier: ").append(tier).append("\n")
             .append("Categoria: ").append(category).append("\n")
             .append("Precision: ").append(accuracy).append("\n")

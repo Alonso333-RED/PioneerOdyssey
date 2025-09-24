@@ -20,9 +20,9 @@ public class PioneerOdyssey {
         int ySize = ThreadLocalRandom.current().nextInt(1, 10+1);
         int zSize = ThreadLocalRandom.current().nextInt(1, 10+1);
 
-        //xSize = 10;
-        //ySize = 10;
-        //zSize = 10;
+        xSize = 10;
+        ySize = 10;
+        zSize = 10;
 
         Sector[][][] world = new Sector[xSize][ySize][zSize];
         worldUtils.setupWorld(world);
@@ -45,6 +45,7 @@ public class PioneerOdyssey {
         int z = mySector.getZLocation();
         //z = 0;
         System.out.println("Capa "+z);
+        System.out.println(mySector.getTier());
         for (int x = 0; x < world.length; x++) {
             for (int y = 0; y < world[x].length; y++) {
                 Sector currentSector = world[x][y][z];
@@ -87,12 +88,18 @@ public class PioneerOdyssey {
             System.out.println();
         }
         System.out.println();
-        System.out.println("Ubicación actual: " + mySector.getName() + " (" + mySector.getXLocation()+","+mySector.getYLocation()+","+mySector.getZLocation()+")");
-        System.out.println("Norte: " + mySector.getNorth().getName()+" ("+mySector.getNorth().getID()+")");
-        System.out.println("Sur: " + mySector.getSouth().getName()+" ("+mySector.getSouth().getID()+")");
-        System.out.println("Este: " + mySector.getEast().getName()+" ("+mySector.getEast().getID()+")");
-        System.out.println("Oeste: " + mySector.getWest().getName()+" ("+mySector.getWest().getID()+")");
-        System.out.println();
+        System.out.println("Ubicación actual: " + mySector.getName() + " (" + mySector.getXLocation()+","+mySector.getYLocation()+","+mySector.getZLocation()+") "+mySector.getTier());
+        System.out.println("Norte: " + mySector.getNorth().getName()+" ("+mySector.getNorth().getID()+") "+mySector.getNorth().getTier());
+        System.out.println("Sur: " + mySector.getSouth().getName()+" ("+mySector.getSouth().getID()+") "+mySector.getSouth().getTier());
+        System.out.println("Este: " + mySector.getEast().getName()+" ("+mySector.getEast().getID()+") "+mySector.getEast().getTier());
+        System.out.println("Oeste: " + mySector.getWest().getName()+" ("+mySector.getWest().getID()+") "+mySector.getWest().getTier());
+
+        inX = ThreadLocalRandom.current().nextInt(0, world.length);
+        inY = ThreadLocalRandom.current().nextInt(0, world[0].length);
+        inZ = ThreadLocalRandom.current().nextInt(0, world[0][0].length);
+        Sector someSector = world[inX][inY][inZ];
+        
+        System.out.println("En algun lugar del universo: "+someSector.getName()+" "+someSector.getID()+" "+someSector.getTier());
 
         SpaceShip CNS_Chiloe = new SpaceShip(
             "CNS-Chiloe",

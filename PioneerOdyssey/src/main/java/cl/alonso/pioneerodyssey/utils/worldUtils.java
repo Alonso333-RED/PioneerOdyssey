@@ -36,11 +36,15 @@ public class worldUtils {
     }
 
     public static void setupWorld(Sector[][][] world) {
-        int number = 1;
+        Tier[] allTiers = Tier.values();
+        int maxTierIndex = allTiers.length - 1;
+        int number = 0;
         for (int x = 0; x < world.length; x++) {
             for (int y = 0; y < world[x].length; y++) {
                 for (int z = 0; z < world[x][y].length; z++) {
-                    world[x][y][z] = new Sector(getRandomName() + " " + number, x, y, z);
+                    int tierIndex = Math.min(z, maxTierIndex);
+                    Tier tierForLayer = allTiers[tierIndex];
+                    world[x][y][z] = new Sector(getRandomName() + " " + number, x, y, z, tierForLayer);
                     number++;
                 }
             }
