@@ -2,12 +2,15 @@ package cl.alonso.pioneerodyssey.core.modules;
 
 import cl.alonso.pioneerodyssey.utils.Tier;
 import cl.alonso.pioneerodyssey.utils.Category;
+import cl.alonso.pioneerodyssey.utils.WeaponType;
 
 public class Weapon {
     private final String name;
+    private final WeaponType weaponType;
     private final String description;
     private final Tier tier;
     private final Category category;
+
     private final int accuracy;
     private final int reloadTime;
     private int currentReload;
@@ -30,10 +33,12 @@ public class Weapon {
     private final int minExplosiveDamage;
 
     public Weapon(
-        String name, 
+        String name,
+        WeaponType weaponType,
         String description,
         Tier tier, 
         Category category,
+
         int accuracy, 
         int reloadTime, 
         int energyConsumption,
@@ -62,6 +67,8 @@ public class Weapon {
         }
         this.name = name;
 
+        this.weaponType = weaponType;
+
         int descriptionLimit = 100;
         if (description.length() > descriptionLimit) {
             System.out.println("!---ADVERTENCIA: "+description+" Es demasiado largo para la descripcion, sera acortado a "+descriptionLimit+" caracteres.");
@@ -71,6 +78,7 @@ public class Weapon {
         
         this.tier = tier;
         this.category = category;
+
         this.accuracy = accuracy;
         this.reloadTime = reloadTime;
         this.currentReload = 0;
@@ -99,9 +107,11 @@ public class Weapon {
 
     public Weapon(Weapon other) {
         this.name = other.name;
+        this.weaponType = other.weaponType;
         this.description = other.description;
         this.tier = other.tier;
         this.category = other.category;
+
         this.accuracy = other.accuracy;
         this.reloadTime = other.reloadTime;
         this.currentReload = other.currentReload;
@@ -125,15 +135,12 @@ public class Weapon {
     }
 
     public String getName() {return name;}
-
+    public WeaponType getWeaponType() {return weaponType;}
     public String getDescription() {return description;}
-
     public Tier getTier() {return tier;}
-
     public Category getCategory() {return category;}
 
     public int getAccuracy() {return accuracy;}
-
     public int getReloadTime() {return reloadTime;}
 
     public int getCurrentReload() {return currentReload;}
@@ -161,6 +168,7 @@ public class Weapon {
         StringBuilder info = new StringBuilder();
         info.append("Informacion de Arma/ Atributos :\n")
             .append(" --- ").append(name).append(" --- \n")
+            .append("Tipo de arma: ").append(weaponType.getValue()).append("\n")
             .append("Descripcion: ").append(description).append("\n")
             .append("Tier: ").append(tier).append("\n")
             .append("Categoria: ").append(category).append("\n")

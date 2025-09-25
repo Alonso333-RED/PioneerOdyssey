@@ -11,7 +11,8 @@ import cl.alonso.pioneerodyssey.utils.worldUtils;
 import cl.alonso.pioneerodyssey.utils.equipUtils;
 import cl.alonso.pioneerodyssey.utils.Tier;
 import cl.alonso.pioneerodyssey.utils.Category;
-import cl.alonso.pioneerodyssey.utils.Triple;
+import cl.alonso.pioneerodyssey.utils.WeaponType;
+import cl.alonso.pioneerodyssey.utils.Quad;
 
 public class PioneerOdyssey {
     public static void main(String[] args) {
@@ -105,7 +106,7 @@ public class PioneerOdyssey {
             "CNS-Chiloe",
             "Un rudimentario crucero de la epoca pasada.",
             Tier.Tier2,
-            Category.Category5,
+            Category.Category3,
             1465,
             30,
             4,
@@ -116,14 +117,15 @@ public class PioneerOdyssey {
             245,
             325,
             100,
-            new Triple<>(WeaponSlot.class, Category.Category1, 6),
-            new Triple<>(WeaponSlot.class, Category.Category1, 6),
-            new Triple<>(WeaponSlot.class, Category.Category2, 2),
-            new Triple<>(WeaponSlot.class, Category.Category4, 1)
+            new Quad<>(WeaponSlot.class, Category.Category1, 3, WeaponType.Missile),
+            new Quad<>(WeaponSlot.class, Category.Category1, 3, WeaponType.Plasma),
+            new Quad<>(WeaponSlot.class, Category.Category2, 2, WeaponType.All),
+            new Quad<>(WeaponSlot.class, Category.Category4, 1, WeaponType.All)
         );
 
         Weapon supportLaser = new Weapon(
             "Laser de Advertencia",
+            WeaponType.Laser,
             "Arma Simple",
             Tier.Tier1,
             Category.Category1,
@@ -137,11 +139,28 @@ public class PioneerOdyssey {
             0, 0, 0
         );
 
+        Weapon genericLaser = new Weapon(
+            "Laser generico",
+            WeaponType.All,
+            "Arma generica, versatil",
+            Tier.Tier1,
+            Category.Category1,
+            25,
+            1,
+            12,
+
+            10, 10, 0.1,
+            40, 20, 0.20,
+            25, 18, 0.18,
+            0, 0, 0
+        );
+
         Weapon ionColosalBlaster = new Weapon(
             "Blaster de Iones colosal",
+            WeaponType.Plasma,
             "Arma avanzada",
-            Tier.Tier9,
-            Category.Category10,
+            Tier.Tier4,
+            Category.Category4,
             55,
             5,
             235,
@@ -154,6 +173,8 @@ public class PioneerOdyssey {
 
         CNS_Chiloe.setName("TricolorWhale");
         equipUtils.equipWeapon(CNS_Chiloe, supportLaser, 14);
+        equipUtils.equipWeapon(CNS_Chiloe, supportLaser, 1);
+        equipUtils.equipWeapon(CNS_Chiloe, genericLaser, 2);
         equipUtils.equipWeapon(CNS_Chiloe, ionColosalBlaster, 14);
         equipUtils.equipWeapon(CNS_Chiloe, ionColosalBlaster, 3);
         equipUtils.equipWeapon(CNS_Chiloe, ionColosalBlaster, 15);
@@ -165,7 +186,8 @@ public class PioneerOdyssey {
         System.out.println(ionColosalBlaster.getInfo());
         System.out.println(supportLaser);
         System.out.println(ionColosalBlaster);
-        System.out.println(((WeaponSlot) CNS_Chiloe.getSlots().get(14)).getWeapon());
+        //System.out.println(((WeaponSlot) CNS_Chiloe.getSlots().get(14)).getWeapon());
+        //System.out.println(((WeaponSlot) CNS_Chiloe.getSlots().get(14)).getWeapon());
         System.out.println(((WeaponSlot) CNS_Chiloe.getSlots().get(3)).getWeapon());
 
     }

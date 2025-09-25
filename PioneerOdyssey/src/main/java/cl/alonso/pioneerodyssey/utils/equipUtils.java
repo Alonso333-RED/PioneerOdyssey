@@ -22,7 +22,26 @@ public class equipUtils {
             System.out.println("La categoría del arma "+ weapon.getName() +" es demasiado alta para este slot("+slotIndex+").");
             return;
         }
+
+        if (!matches(weaponSlot, weapon)) {
+            System.out.println("El tipo del arma "+ weapon.getWeaponType() +" no es compatible con este slot("+slotIndex+") de tipo "+weaponSlot.getWeaponType()+".");
+            return;
+        }
         
         weaponSlot.setWeapon(new Weapon(weapon));
+    }
+
+    public static boolean matches(WeaponSlot slot, Weapon weapon) {
+        WeaponType slotType = slot.getWeaponType();
+        WeaponType weaponType = weapon.getWeaponType();
+    
+        if (slotType == null || weaponType == null) {
+            return false;
+        }
+
+        if (slotType == WeaponType.All || weaponType == WeaponType.All) {
+            return true;
+        }
+        return slotType == weaponType;
     }
 }

@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import cl.alonso.pioneerodyssey.core.slots.WeaponSlot;
 import cl.alonso.pioneerodyssey.utils.Tier;
 import cl.alonso.pioneerodyssey.utils.Category;
-import cl.alonso.pioneerodyssey.utils.Triple;
+import cl.alonso.pioneerodyssey.utils.WeaponType;
+import cl.alonso.pioneerodyssey.utils.Quad;
 
 public class SpaceShip {
     private final String className;
@@ -70,7 +71,7 @@ public class SpaceShip {
         int baseEnergyArmor,
         int baseThermalArmor,
         int baseExplosiveArmor,
-        Triple<Class<?>, Category, Integer>... slotsToAdd //TypeofSlot, MaxCategory, Quantity
+        Quad<Class<?>, Category, Integer, WeaponType>... slotsToAdd //TypeofSlot, MaxCategory, Quantity
         )
         {
         int nameLimit = 25;
@@ -125,15 +126,16 @@ public class SpaceShip {
         this.baseExplosiveArmor = baseExplosiveArmor;
         this.explosiveArmor = baseExplosiveArmor;
 
-        for (Triple<Class<?>, Category, Integer> slotInfo : slotsToAdd) {
+        for (Quad<Class<?>, Category, Integer, WeaponType> slotInfo : slotsToAdd) {
             Class<?> slotType = slotInfo.getFirst();
             Category maxCategory = slotInfo.getSecond();
             int quantity = slotInfo.getThird();
+            WeaponType weaponType = slotInfo.getFourth();
 
             for (int i = 0; i < quantity; i++) {
                 try {
                     if (slotType == WeaponSlot.class) {
-                        slots.add(new WeaponSlot(maxCategory));
+                        slots.add(new WeaponSlot(maxCategory, weaponType));
                     } 
                     // Future slot types will be added here
                 } catch (Exception e) {
@@ -256,10 +258,12 @@ public class SpaceShip {
                 String weaponName = (weaponSlot.getWeapon() != null) ? weaponSlot.getWeapon().getName() : "Vacío";
                 String weaponCat = (weaponSlot.getWeapon() != null) ? weaponSlot.getWeapon().getCategory().toString() : "-";
                 String maxCat = weaponSlot.getMaxCategory().toString();
+                String weaponTypeValue = weaponSlot.getWeaponTypeValue().toString();
 
                 info.append("  - ").append(i)
                     .append(" Arma: ").append(weaponName)
-                    .append(" (").append(weaponCat).append("/").append(maxCat).append(")\n");
+                    .append(" (").append(weaponCat).append("/").append(maxCat).append(")\n")
+                    .append(" Tipo: ").append(weaponTypeValue).append("\n");
             } // Future slot types can be added here
         }
         info.append(" ---------- \n");
