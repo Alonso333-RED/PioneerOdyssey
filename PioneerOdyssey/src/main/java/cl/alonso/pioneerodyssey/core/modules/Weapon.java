@@ -1,10 +1,10 @@
 package cl.alonso.pioneerodyssey.core.modules;
 
-import cl.alonso.pioneerodyssey.utils.Tier;
-import cl.alonso.pioneerodyssey.utils.Category;
-import cl.alonso.pioneerodyssey.utils.WeaponType;
+import cl.alonso.pioneerodyssey.utils.enums.Category;
+import cl.alonso.pioneerodyssey.utils.enums.Tier;
+import cl.alonso.pioneerodyssey.utils.enums.WeaponType;
 
-public class Weapon {
+public class Weapon implements Module {
     private final String name;
     private final WeaponType weaponType;
     private final String description;
@@ -163,7 +163,8 @@ public class Weapon {
     public int getExplosivePenetration() {return explosivePenetration;}
     public int getMaxExplosiveDamage() {return maxExplosiveDamage;}
     public int getMinExplosiveDamage() {return minExplosiveDamage;}
-
+    
+    @Override
     public String getInfo() {
         StringBuilder info = new StringBuilder();
         info.append("Informacion de Arma/ Atributos :\n")

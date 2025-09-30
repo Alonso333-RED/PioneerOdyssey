@@ -5,14 +5,19 @@ import java.util.concurrent.ThreadLocalRandom;
 import cl.alonso.pioneerodyssey.core.Sector;
 import cl.alonso.pioneerodyssey.core.SpaceShip;
 import cl.alonso.pioneerodyssey.core.modules.Weapon;
+import cl.alonso.pioneerodyssey.core.modules.Upgrade;
+import cl.alonso.pioneerodyssey.core.modules.Utility;
 import cl.alonso.pioneerodyssey.core.slots.WeaponSlot;
-
+import cl.alonso.pioneerodyssey.core.slots.UpgradeSlot;
+import cl.alonso.pioneerodyssey.core.slots.UtilitySlot;
+import cl.alonso.pioneerodyssey.utils.Quad;
 import cl.alonso.pioneerodyssey.utils.worldUtils;
 import cl.alonso.pioneerodyssey.utils.equipUtils;
-import cl.alonso.pioneerodyssey.utils.Tier;
-import cl.alonso.pioneerodyssey.utils.Category;
-import cl.alonso.pioneerodyssey.utils.WeaponType;
-import cl.alonso.pioneerodyssey.utils.Quad;
+import cl.alonso.pioneerodyssey.utils.enums.Category;
+import cl.alonso.pioneerodyssey.utils.enums.Tier;
+import cl.alonso.pioneerodyssey.utils.enums.WeaponType;
+import cl.alonso.pioneerodyssey.utils.enums.UpgradeType;
+import cl.alonso.pioneerodyssey.utils.enums.UtilityType;
 
 public class PioneerOdyssey {
     public static void main(String[] args) {
@@ -110,6 +115,7 @@ public class PioneerOdyssey {
             1465,
             30,
             4,
+            50,
             45,
             765,
             100,
@@ -118,14 +124,14 @@ public class PioneerOdyssey {
             325,
             100,
             new Quad<>(WeaponSlot.class, Category.Category1, 3, WeaponType.Missile),
-            new Quad<>(WeaponSlot.class, Category.Category1, 3, WeaponType.Plasma),
+            new Quad<>(WeaponSlot.class, Category.Category1, 3, WeaponType.Energy),
             new Quad<>(WeaponSlot.class, Category.Category2, 2, WeaponType.All),
             new Quad<>(WeaponSlot.class, Category.Category4, 1, WeaponType.All)
         );
 
         Weapon supportLaser = new Weapon(
             "Laser de Advertencia",
-            WeaponType.Laser,
+            WeaponType.Energy,
             "Arma Simple",
             Tier.Tier1,
             Category.Category1,
@@ -157,7 +163,7 @@ public class PioneerOdyssey {
 
         Weapon ionColosalBlaster = new Weapon(
             "Blaster de Iones colosal",
-            WeaponType.Plasma,
+            WeaponType.Energy,
             "Arma avanzada",
             Tier.Tier4,
             Category.Category4,
@@ -169,6 +175,32 @@ public class PioneerOdyssey {
             850, 25, 0.75,
             450, 18, 0.40,
             100,10,0.01
+        );
+
+        Upgrade advancedReactor = new Upgrade(
+            "Reactor Avanzado",
+            UpgradeType.Energy,
+            "Mejora el rendimiento del reactor",
+            Tier.Tier3,
+            Category.Category3,
+            0, 
+            0, 
+            0, 
+            250, 
+            0, 
+            0, 
+            0, 
+            0, 
+            0,
+            
+            -100, 
+            -25, 
+            0, 
+            0, 
+            0,
+            0, 
+            0, 
+            0
         );
 
         CNS_Chiloe.setName("TricolorWhale");

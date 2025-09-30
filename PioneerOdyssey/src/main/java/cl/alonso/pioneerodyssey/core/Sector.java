@@ -1,6 +1,6 @@
 package cl.alonso.pioneerodyssey.core;
 
-import cl.alonso.pioneerodyssey.utils.Tier;
+import cl.alonso.pioneerodyssey.utils.enums.Tier;
 
 public class Sector {
     

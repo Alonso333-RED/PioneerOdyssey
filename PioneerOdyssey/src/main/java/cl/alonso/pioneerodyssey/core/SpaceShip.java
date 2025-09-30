@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 import cl.alonso.pioneerodyssey.core.slots.WeaponSlot;
-import cl.alonso.pioneerodyssey.utils.Tier;
-import cl.alonso.pioneerodyssey.utils.Category;
-import cl.alonso.pioneerodyssey.utils.WeaponType;
+import cl.alonso.pioneerodyssey.utils.enums.Category;
+import cl.alonso.pioneerodyssey.utils.enums.Tier;
+import cl.alonso.pioneerodyssey.utils.enums.WeaponType;
 import cl.alonso.pioneerodyssey.utils.Quad;
 
 public class SpaceShip {
@@ -28,6 +28,9 @@ public class SpaceShip {
 
     private final int baseAcceleration;
     private int acceleration;
+
+    private final int baseEnergyRegeneration;
+    private int energyRegeneration;
 
     private final int baseMaxEnergy;
     private int maxEnergy;
@@ -64,6 +67,7 @@ public class SpaceShip {
         int baseMaxIntegrity,
         int baseMaxSpeed,
         int baseAcceleration,
+        int baseEnergyRegeneration,
         int baseMaxEnergy,
         int cargoCapacity,
         int baseMiningPower,
@@ -71,7 +75,7 @@ public class SpaceShip {
         int baseEnergyArmor,
         int baseThermalArmor,
         int baseExplosiveArmor,
-        Quad<Class<?>, Category, Integer, WeaponType>... slotsToAdd //TypeofSlot, MaxCategory, Quantity
+        Quad<Class<?>, Category, Integer, Enum<?>>... slotsToAdd //TypeofSlot, MaxCategory, Quantity, Can accept any Xtype, WeaponType, StructureType, etc...
         )
         {
         int nameLimit = 25;
@@ -117,6 +121,9 @@ public class SpaceShip {
         this.baseKineticArmor = baseKineticArmor;
         this.kineticArmor = baseKineticArmor;
 
+        this.baseEnergyRegeneration = baseEnergyRegeneration;
+        this.energyRegeneration = baseEnergyRegeneration;
+
         this.baseEnergyArmor = baseEnergyArmor;
         this.energyArmor = baseEnergyArmor;
 
@@ -126,16 +133,16 @@ public class SpaceShip {
         this.baseExplosiveArmor = baseExplosiveArmor;
         this.explosiveArmor = baseExplosiveArmor;
 
-        for (Quad<Class<?>, Category, Integer, WeaponType> slotInfo : slotsToAdd) {
+        for (Quad<Class<?>, Category, Integer, Enum<?>> slotInfo : slotsToAdd) {
             Class<?> slotType = slotInfo.getFirst();
             Category maxCategory = slotInfo.getSecond();
             int quantity = slotInfo.getThird();
-            WeaponType weaponType = slotInfo.getFourth();
+            Enum<?> weaponType = slotInfo.getFourth();
 
             for (int i = 0; i < quantity; i++) {
                 try {
                     if (slotType == WeaponSlot.class) {
-                        slots.add(new WeaponSlot(maxCategory, weaponType));
+                        slots.add(new WeaponSlot(maxCategory, (WeaponType) weaponType));
                     } 
                     // Future slot types will be added here
                 } catch (Exception e) {
@@ -177,6 +184,10 @@ public class SpaceShip {
     public int getBaseMaxEnergy() {return baseMaxEnergy;}
     public int getMaxEnergy() {return maxEnergy;}
     public void setMaxEnergy(int maxEnergy) {this.maxEnergy = maxEnergy;}
+
+    public int getBaseEnergyRegeneration() {return baseEnergyRegeneration;}
+    public int getEnergyRegeneration() {return energyRegeneration;}
+    public void setEnergyRegeneration(int energyRegeneration) {this.energyRegeneration = energyRegeneration;}
 
     public int getCurrentEnergy() {return currentEnergy;}
     public void setCurrentEnergy(int currentEnergy) {this.currentEnergy = currentEnergy;}
@@ -220,7 +231,8 @@ public class SpaceShip {
             .append("Integridad base: ").append(baseMaxIntegrity).append("\n")
             .append("Velocidad base: ").append(baseMaxSpeed).append("\n")
             .append("Aceleración base: ").append(baseAcceleration).append("\n")
-            .append("Energía base: ").append(baseMaxEnergy).append("\n")
+            .append("Regeneracion de energía base: ").append(baseEnergyRegeneration).append("\n")
+            .append("Almacen de energía base: ").append(baseMaxEnergy).append("\n")
             .append("Capacidad de Carga: ").append(cargoCapacity).append("\n")
             .append("Poder de Mineria base: ").append(baseMiningPower).append("\n")
             .append("Blindaje Cinetico base: ").append(baseKineticArmor).append("\n")
@@ -242,7 +254,8 @@ public class SpaceShip {
             .append("Integridad: ").append(currentIntegrity).append("/").append(maxIntegrity).append("\n")
             .append("Velocidad: ").append(currentSpeed).append("/").append(maxSpeed).append("\n")
             .append("Aceleración: ").append(acceleration).append("\n")
-            .append("Energía: ").append(currentEnergy).append("/").append(maxEnergy).append("\n")
+            .append("Regeneracion de energía: ").append(energyRegeneration).append("\n")
+            .append("Almacen de Energía: ").append(currentEnergy).append("/").append(maxEnergy).append("\n")
             .append("Capacidad de Carga: ").append(currentCargo).append("/").append(cargoCapacity).append("\n")
             .append("Poder de Mineria: ").append(miningPower).append("\n")
             .append("Blindaje Cinetico: ").append(kineticArmor).append("\n")

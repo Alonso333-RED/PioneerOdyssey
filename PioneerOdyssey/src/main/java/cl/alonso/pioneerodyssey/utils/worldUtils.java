@@ -3,6 +3,7 @@ package cl.alonso.pioneerodyssey.utils;
 import java.util.concurrent.ThreadLocalRandom;
 
 import cl.alonso.pioneerodyssey.core.Sector;
+import cl.alonso.pioneerodyssey.utils.enums.Tier;
 
 public class worldUtils {
     

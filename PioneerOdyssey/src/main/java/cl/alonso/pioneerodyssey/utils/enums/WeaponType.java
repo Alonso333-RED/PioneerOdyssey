@@ -1,10 +1,9 @@
-package cl.alonso.pioneerodyssey.utils;
+package cl.alonso.pioneerodyssey.utils.enums;
 
 public enum WeaponType {
     Ballistic("Balistico"),
-    Laser("Laser"),
+    Energy("Energia"),
     Missile("Misil"),
-    Plasma("Plasma"),
     All("Cualquiera");
 
     private final String value;

@@ -3,6 +3,7 @@ package cl.alonso.pioneerodyssey.utils;
 import cl.alonso.pioneerodyssey.core.SpaceShip;
 import cl.alonso.pioneerodyssey.core.modules.Weapon;
 import cl.alonso.pioneerodyssey.core.slots.WeaponSlot;
+import cl.alonso.pioneerodyssey.utils.enums.WeaponType;
 
 public class equipUtils {
     public static void equipWeapon(SpaceShip ship, Weapon weapon, int slotIndex) {

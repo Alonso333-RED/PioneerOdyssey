@@ -1,4 +1,4 @@
-package cl.alonso.pioneerodyssey.utils;
+package cl.alonso.pioneerodyssey.utils.enums;
 
 public enum Category {
     Category1(1),
